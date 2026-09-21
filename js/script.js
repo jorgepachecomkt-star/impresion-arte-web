@@ -148,4 +148,102 @@
       window.open(`https://wa.me/525655454320?text=${text}`, "_blank");
     });
   }
+
+  const designsGrid = document.getElementById("designsGrid");
+  const designModal = document.getElementById("designModal");
+  const designModalClose = document.getElementById("designModalClose");
+  const designModalName = document.getElementById("designModalName");
+  const designLinks = document.querySelectorAll(".design-modal__link");
+  const DESIGN_PATH = "images/diseños/diseño-";
+  const DESIGN_EXT = ".jpeg";
+  let activeDesign = "";
+
+  const openDesignModal = (designName) => {
+    activeDesign = designName;
+    designModalName.textContent = activeDesign;
+    designLinks.forEach((link) => {
+      const prenda = link.dataset.prenda;
+      link.href =
+        "https://wa.me/525655454320?text=" +
+        encodeURIComponent(
+          "Hola Impresion-Arte, me interesa el diseño " +
+            activeDesign +
+            " en prenda " +
+            prenda +
+            "."
+        );
+    });
+    designModal.classList.add("open");
+    document.body.style.overflow = "hidden";
+  };
+
+  const closeDesignModal = () => {
+    designModal.classList.remove("open");
+    document.body.style.overflow = "";
+  };
+
+  const createDesignCard = (pad) => {
+    const card = document.createElement("article");
+    card.className = "card reveal design-card";
+
+    const img = document.createElement("img");
+    img.src = DESIGN_PATH + pad + DESIGN_EXT;
+    img.alt = "Diseño " + pad;
+    img.className = "card__img";
+    img.loading = "lazy";
+
+    const body = document.createElement("div");
+    body.className = "card__body";
+
+    const title = document.createElement("h3");
+    title.className = "card__title";
+    title.textContent = "Diseño " + pad;
+
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "btn btn--outline btn--sm design-card__select";
+    btn.textContent = "Elegir diseño";
+    btn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      openDesignModal("Diseño " + pad);
+    });
+
+    body.appendChild(title);
+    body.appendChild(btn);
+    card.appendChild(img);
+    card.appendChild(body);
+    return card;
+  };
+
+  const loadDesigns = () => {
+    const check = (pad) => {
+      const probe = new Image();
+      probe.onload = () => {
+        const card = createDesignCard(pad);
+        designsGrid.appendChild(card);
+        revealObserver.observe(card);
+        check(String(Number(pad) + 1).padStart(2, "0"));
+      };
+      probe.src = DESIGN_PATH + pad + DESIGN_EXT;
+    };
+    check("01");
+  };
+
+  if (designsGrid) loadDesigns();
+
+  if (designModal && designModalClose) {
+    designModalClose.addEventListener("click", closeDesignModal);
+    designModal.addEventListener("click", (e) => {
+      if (e.target === designModal) closeDesignModal();
+    });
+  }
+
+  designLinks.forEach((link) =>
+    link.addEventListener("click", closeDesignModal)
+  );
+
+  document.addEventListener("keydown", (e) => {
+    if (!designModal.classList.contains("open")) return;
+    if (e.key === "Escape") closeDesignModal();
+  });
 })();

@@ -166,6 +166,18 @@
       </div>
     </section>
 
+    <section class="section designs" id="disenos">
+      <div class="container">
+        <div class="section__head reveal">
+          <p class="section__eyebrow">Personaliza tu prenda</p>
+          <h2 class="section__title">Diseños disponibles</h2>
+          <p class="section__desc">Elige un diseño y nosotros lo estampamos en playera o sudadera.</p>
+        </div>
+
+        <div class="designs__grid" id="designsGrid"></div>
+      </div>
+    </section>
+
     <section class="section gallery" id="galeria">
       <div class="container">
         <div class="section__head reveal">
@@ -312,6 +324,18 @@
     <img class="lightbox__img" id="lightboxImg" src="" alt="Imagen ampliada">
     <button class="lightbox__nav lightbox__nav--next" id="lightboxNext" aria-label="Imagen siguiente">›</button>
     <p class="lightbox__caption" id="lightboxCaption"></p>
+  </div>
+
+  <div class="design-modal" id="designModal" role="dialog" aria-modal="true" aria-label="Elige tu prenda">
+    <div class="design-modal__panel">
+      <button class="design-modal__close" id="designModalClose" aria-label="Cerrar">×</button>
+      <h3 class="design-modal__title">¿En qué prenda lo quieres?</h3>
+      <p class="design-modal__desc">Diseño: <span class="design-modal__name" id="designModalName"></span></p>
+      <div class="design-modal__actions">
+        <a href="#" target="_blank" rel="noopener" class="btn btn--whatsapp design-modal__link" data-prenda="Playera">Playera</a>
+        <a href="#" target="_blank" rel="noopener" class="btn btn--whatsapp design-modal__link" data-prenda="Sudadera">Sudadera</a>
+      </div>
+    </div>
   </div>
 
   <script src="js/script.js"></script>

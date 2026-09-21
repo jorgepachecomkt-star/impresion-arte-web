@@ -442,6 +442,90 @@ ul {
   margin-bottom: 16px;
 }
 
+/* ---------- Diseños disponibles ---------- */
+.designs__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 26px;
+}
+
+.design-card__select {
+  margin-top: 4px;
+}
+
+/* ---------- Modal de diseños ---------- */
+.design-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 210;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background: rgba(10, 12, 26, 0.92);
+  padding: 24px;
+}
+
+.design-modal.open {
+  display: flex;
+}
+
+.design-modal__panel {
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+  padding: 32px;
+  background: var(--clr-bg);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-lg);
+  text-align: center;
+  animation: zoomIn 0.3s ease;
+}
+
+.design-modal__close {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: none;
+  background: var(--clr-bg-alt);
+  color: var(--clr-dark);
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.design-modal__close:hover {
+  background: #e3e6f2;
+}
+
+.design-modal__title {
+  font-family: var(--font-head);
+  font-weight: 700;
+  font-size: 1.3rem;
+  color: var(--clr-dark);
+  margin-bottom: 6px;
+}
+
+.design-modal__desc {
+  color: var(--clr-muted);
+  font-size: 0.92rem;
+  margin-bottom: 22px;
+}
+
+.design-modal__name {
+  font-family: var(--font-head);
+  font-weight: 600;
+  color: var(--clr-primary-2);
+}
+
+.design-modal__actions {
+  display: grid;
+  gap: 12px;
+}
+
 /* ---------- Services ---------- */
 .services__grid {
   display: grid;
@@ -856,6 +940,10 @@ ul {
     grid-template-columns: repeat(3, 1fr);
   }
 
+  .designs__grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
   .gallery__grid {
     grid-template-columns: repeat(3, 1fr);
   }
@@ -918,6 +1006,10 @@ ul {
     grid-template-columns: repeat(2, 1fr);
   }
 
+  .designs__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
   .services__grid {
     grid-template-columns: 1fr;
   }
@@ -937,6 +1029,10 @@ ul {
 
 @media (max-width: 520px) {
   .products__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .designs__grid {
     grid-template-columns: 1fr;
   }
 
